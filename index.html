@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FractionVista Elite: Premium tools for percentage calculations, interactive 3D charts, complete percentage references, and advanced calculators. Master fractions and percentages with luxury precision.">
+    <meta name="keywords" content="percentage calculator, fraction to percentage, percentage chart, percentage tools, fraction vista, elite percentage mastery">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="FractionVista Elite | Premium Percentage Tools">
+    <meta property="og:description" content="Explore, visualize, and calculate percentages with luxury precision using our interactive 3D charts, complete references, and advanced calculator.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com"> <!-- Replace with actual URL -->
+    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg"> <!-- Add if you have an OG image -->
+    <link rel="canonical" href="https://yourwebsite.com"> <!-- Replace with actual URL -->
+    <title>FractionVista Elite | Premium Percentage Tools</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --luxury-green: #00C853;
+            --emerald: #00E676;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.18);
+            --glow-effect: 0 0 25px rgba(0, 200, 83, 0.6);
+            --shadow: 0 12px 40px rgba(0, 200, 83, 0.15);
+            --strong-glow: 0 0 15px rgba(0, 200, 83, 0.8), 0 0 30px rgba(0, 200, 83, 0.6), 0 0 45px rgba(0, 200, 83, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5fff9, #ffffff);
+            color: #333;
+            overflow-x: hidden;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Luxury Particle Background */
+        .particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(145deg, rgba(0,200,83,0.03), rgba(255,255,255,0.3));
+        }
+
+        /* Premium Sticky Header */
+        .header {
+            position: fixed;
+            top: -120px;
+            width: 100%;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            border-bottom: 1px solid rgba(0, 200, 83, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: var(--luxury-green);
+            font-weight: 700;
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 5px rgba(0, 200, 83, 0.1);
+        }
+
+        .header .logo-icon {
+            margin-right: 12px;
+            font-size: 1.6rem;
+            color: var(--luxury-green);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 120px 30px 60px;
+        }
+
+        /* Luxury Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0,200,83,0.05) 0%, rgba(0,200,83,0) 70%);
+            z-index: -1;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 50px rgba(0, 200, 83, 0.2);
+        }
+
+        .glass-card h2 {
+            color: var(--luxury-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .glass-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--luxury-green);
+            border-radius: 3px;
+        }
+
+        /* Enhanced 3D Chart */
+        .chart-container {
+            width: 100%;
+            height: 600px;
+            margin: 3rem 0;
+            position: relative;
+            perspective: 1200px;
+        }
+
+        .chart-bars {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .chart-bar {
+            position: absolute;
+            bottom: 0;
+            width: 32px;
+            background: linear-gradient(to top, var(--luxury-green), var(--emerald));
+            border-radius: 10px 10px 0 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(30px);
+            box-shadow: 0 -5px 20px rgba(0, 200, 83, 0.3);
+            z-index: 1;
+        }
+
+        .chart-bar.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chart-bar.highlight {
+            box-shadow: var(--glow-effect);
+            transform: translateY(-10px) scale(1.05) !important;
+            z-index: 2;
+        }
+
+        /* Premium Tooltip */
+        .chart-tooltip {
+            position: absolute;
+            top: -70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            min-width: 100px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .chart-tooltip::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 8px 8px 0;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.85) transparent transparent;
+        }
+
+        /* Complete Percentage Table */
+        .percentage-table-container {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 200, 83, 0.1);
+        }
+
+        .percentage-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .percentage-table th {
+            background: var(--luxury-green);
+            color: white;
+            font-weight: 600;
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+        }
+
+        .percentage-table td {
+            padding: 12px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: all 0.2s ease;
+        }
+
+        .percentage-table tr:nth-child(even) {
+            background: rgba(0, 200, 83, 0.03);
+        }
+
+        .percentage-table tr:hover td {
+            background: rgba(0, 200, 83, 0.08);
+            transform: translateX(5px);
+        }
+
+        /* Luxury Calculator */
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-top: 3rem;
+        }
+
+        .calculator h3 {
+            color: var(--luxury-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .calculator h3 i {
+            margin-right: 10px;
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .calculator-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .calculator label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .calculator input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .calculator input:focus {
+            border-color: var(--luxury-green);
+            box-shadow: 0 0 0 3px rgba(0, 200, 83, 0.2);
+            outline: none;
+        }
+
+        .calculator button {
+            background: var(--luxury-green);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            grid-column: span 2;
+            margin-top: 10px;
+            box-shadow: 0 2px 10px rgba(0, 200, 83, 0.2);
+        }
+
+        .calculator button:hover {
+            background: var(--emerald);
+            transform: translateY(-2px);
+            box-shadow: var(--strong-glow);
+        }
+
+        .calculation-result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(0, 200, 83, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid var(--luxury-green);
+        }
+
+        .calculation-result h4 {
+            color: var(--luxury-green);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .calculation-result h4 i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                padding: 100px 20px 40px;
+            }
+            
+            .glass-card {
+                padding: 2rem;
+            }
+            
+            .chart-container {
+                height: 450px;
+            }
+            
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator button {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .glass-card {
+                padding: 1.8rem;
+            }
+            
+            .chart-container {
+                height: 350px;
+            }
+            
+            .percentage-table th, 
+            .percentage-table td {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--luxury-green);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader-content {
+            text-align: center;
+            transform: translateY(-50px);
+        }
+
+        .loader .logo {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loader .logo i {
+            margin-right: 15px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .loader .progress-container {
+            width: 250px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+
+        .loader .progress-bar {
+            height: 100%;
+            background: white;
+            width: 0;
+            transition: width 0.4s ease;
+            border-radius: 3px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Floating Action Button with Glow */
+        .fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--luxury-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 25px rgba(0, 200, 83, 0.4);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .fab:hover {
+            transform: scale(1.1) translateY(-5px);
+            background: var(--emerald);
+            box-shadow: var(--strong-glow);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(15px);
+            box-shadow: var(--shadow);
+            border-top: 1px solid rgba(0, 200, 83, 0.1);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Luxury Loading Screen -->
+    <div class="loader">
+        <div class="loader-content">
+            <div class="logo">
+                <i class="fas fa-chart-pie"></i>
+                <span>FractionVista Elite</span>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="loadingBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Premium Particle Background -->
+    <div id="particles-js" class="particles-js"></div>
+
+    <!-- Luxury Sticky Header -->
+    <header class="header">
+        <i class="fas fa-chart-pie logo-icon"></i>
+        <h1>FractionVista Elite</h1>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="glass-card">
+                <h2><i class="fas fa-crown" style="margin-right: 10px;"></i> Premium Percentage Mastery Suite</h2>
+                <p>Explore, visualize, and calculate percentages with luxury precision</p>
+            </div>
+        </section>
+
+        <!-- Enhanced 3D Chart -->
+        <section class="chart-section">
+            <div class="glass-card">
+                <h2><i class="fas fa-chart-bar" style="margin-right: 10px;"></i> Interactive 3D Percentage Chart</h2>
+                <p>Scroll to animate. Hover or tap bars for detailed information.</p>
+                <div class="chart-container">
+                    <div class="chart-bars" id="chartBars"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Complete Percentage Table (1-100%) -->
+        <section class="table-section">
+            <div class="glass-card">
+                <h2><i class="fas fa-table" style="margin-right: 10px;"></i> Complete Percentage Reference (1% to 100%)</h2>
+                <p>Every percentage point with corresponding fractions</p>
+                <div class="percentage-table-container">
+                    <table class="percentage-table" id="percentageTable">
+                        <thead>
+                            <tr>
+                                <th>Fraction</th>
+                                <th>Percentage</th>
+                                <th>Fraction</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <!-- Table will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Luxury Percentage Calculator -->
+        <section class="calculator-section">
+            <div class="glass-card">
+                <h2><i class="fas fa-calculator" style="margin-right: 10px;"></i> Percentage Calculator</h2>
+                <p>Calculate any percentage with step-by-step solution</p>
+                <div class="calculator">
+                    <div class="calculator-grid">
+                        <div class="calculator-group">
+                            <label for="numerator">Numerator (Part)</label>
+                            <input type="number" id="numerator" placeholder="e.g. 25">
+                        </div>
+                        <div class="calculator-group">
+                            <label for="denominator">Denominator (Whole)</label>
+                            <input type="number" id="denominator" placeholder="e.g. 100">
+                        </div>
+                    </div>
+                    <button id="calculateBtn"><i class="fas fa-calculator" style="margin-right: 8px;"></i> Calculate Percentage</button>
+                    
+                    <div class="calculation-result" id="calculationResult" style="display: none;">
+                        <h4><i class="fas fa-lightbulb"></i> Calculation Result</h4>
+                        <div id="resultValue"></div>
+                        <div id="calculationSteps" style="margin-top: 10px;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Floating Action Button -->
+    <div class="fab" id="scrollToggleBtn">
+        <i class="fas fa-arrow-up" id="scrollIcon"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2025 FractionVista Elite. All rights reserved.
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Luxury loading animation with even faster progress
+            let progress = 0;
+            const loadingInterval = setInterval(() => {
+                progress += 10 + Math.random() * 15; // Even faster loading simulation
+                document.getElementById('loadingBar').style.width = `${Math.min(progress, 100)}%`;
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                    document.querySelector('.loader').style.opacity = '0';
+                    document.querySelector('.loader').style.visibility = 'hidden';
+                    setTimeout(() => {
+                        document.querySelector('.loader').remove();
+                    }, 300); // Reduced timeout
+                }
+            }, 10); // Faster interval
+
+            // Initialize particles with minimal settings for speed
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 10, density: { enable: true, value_area: 1000 } }, // Further reduced particles
+                    color: { value: "#00C853" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.1, random: true },
+                    size: { value: 1, random: true },
+                    line_linked: { enable: false },
+                    move: { 
+                        enable: true, 
+                        speed: 0.3, 
+                        direction: "none", 
+                        random: true, 
+                        straight: false, 
+                        out_mode: "out" 
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: false },
+                        onclick: { enable: false }
+                    }
+                }
+            });
+
+            // Sticky header animation
+            let lastScrollY = window.scrollY;
+            let scrollDirection = 'down'; // Initial direction
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 80) {
+                    header.style.top = '0';
+                } else {
+                    header.style.top = '-120px';
+                }
+                
+                // Detect scroll direction
+                if (window.scrollY > lastScrollY) {
+                    scrollDirection = 'down';
+                } else {
+                    scrollDirection = 'up';
+                }
+                lastScrollY = window.scrollY;
+                
+                // Animate chart bars on scroll
+                animateBarsOnScroll();
+                
+                // Update FAB icon and visibility
+                updateScrollButton(scrollDirection);
+            });
+
+            // Scroll toggle button
+            const scrollToggleBtn = document.getElementById('scrollToggleBtn');
+            const scrollIcon = document.getElementById('scrollIcon');
+
+            scrollToggleBtn.addEventListener('click', function() {
+                if (window.scrollY === 0) {
+                    // At top, scroll to bottom
+                    window.scrollTo({
+                        top: document.documentElement.scrollHeight,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Anywhere else, scroll to top
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+
+            function updateScrollButton(direction) {
+                if (window.scrollY > 300) {
+                    scrollToggleBtn.style.opacity = '1';
+                    scrollToggleBtn.style.visibility = 'visible';
+                } else {
+                    scrollToggleBtn.style.opacity = '0';
+                    scrollToggleBtn.style.visibility = 'hidden';
+                }
+
+                if (window.scrollY === 0) {
+                    // At top, show down arrow for scrolling to bottom
+                    scrollIcon.classList.remove('fa-arrow-up');
+                    scrollIcon.classList.add('fa-arrow-down');
+                } else {
+                    // Based on scroll direction
+                    if (direction === 'down') {
+                        scrollIcon.classList.remove('fa-arrow-up');
+                        scrollIcon.classList.add('fa-arrow-down');
+                    } else if (direction === 'up') {
+                        scrollIcon.classList.remove('fa-arrow-down');
+                        scrollIcon.classList.add('fa-arrow-up');
+                    }
+                }
+            }
+
+            // Initial update
+            updateScrollButton('down');
+
+            // Initialize light components
+            setupCalculator();
+
+            // Setup lazy loading with IntersectionObserver for heavy sections
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const sectionObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (entry.target.classList.contains('chart-section')) {
+                            create3DChart();
+                        } else if (entry.target.classList.contains('table-section')) {
+                            populateCompleteTable();
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe sections for lazy loading
+            sectionObserver.observe(document.querySelector('.chart-section'));
+            sectionObserver.observe(document.querySelector('.table-section'));
+        });
+
+        // Create optimized 3D chart
+        function create3DChart() {
+            const chartData = [
+                {fraction: '1/1', percentage: 100},
+                {fraction: '9/10', percentage: 90},
+                {fraction: '4/5', percentage: 80},
+                {fraction: '3/4', percentage: 75},
+                {fraction: '2/3', percentage: 66.67},
+                {fraction: '1/2', percentage: 50},
+                {fraction: '1/3', percentage: 33.33},
+                {fraction: '1/4', percentage: 25},
+                {fraction: '1/5', percentage: 20},
+                {fraction: '1/10', percentage: 10},
+                {fraction: '1/100', percentage: 1}
+            ];
+
+            const container = document.getElementById('chartBars');
+            const containerWidth = container.offsetWidth;
+            const containerHeight = container.offsetHeight;
+            const barWidth = 32;
+            const gap = (containerWidth - (chartData.length * barWidth)) / (chartData.length + 1);
+            const maxHeight = containerHeight * 0.8;
+
+            chartData.forEach((data, index) => {
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.left = `${gap + (index * (barWidth + gap))}px`;
+                bar.style.height = `${(data.percentage / 100) * maxHeight}px`;
+                bar.setAttribute('data-fraction', data.fraction);
+                bar.setAttribute('data-percentage', data.percentage);
+                bar.setAttribute('aria-label', `${data.fraction} - ${data.percentage}%`); // For accessibility and SEO
+                
+                // Create tooltip
+                const tooltip = document.createElement('div');
+                tooltip.className = 'chart-tooltip';
+                tooltip.innerHTML = `
+                    <strong>${data.fraction}</strong>
+                    <div>${data.percentage}%</div>
+                `;
+                bar.appendChild(tooltip);
+                
+                // Add interactions
+                bar.addEventListener('mouseenter', function() {
+                    this.classList.add('highlight');
+                    tooltip.style.opacity = '1';
+                    tooltip.style.transform = 'translateX(-50%) translateY(-10px)';
+                });
+                
+                bar.addEventListener('mouseleave', function() {
+                    this.classList.remove('highlight');
+                    tooltip.style.opacity = '0';
+                    tooltip.style.transform = 'translateX(-50%) translateY(0)';
+                });
+                
+                // For touch devices
+                bar.addEventListener('touchstart', function(e) {
+                    this.classList.add('highlight');
+                    tooltip.style.opacity = '1';
+                    tooltip.style.transform = 'translateX(-50%) translateY(-10px)';
+                    e.preventDefault();
+                });
+                
+                container.appendChild(bar);
+                
+                // Animate in with delay (reduced delay for faster load)
+                setTimeout(() => {
+                    bar.classList.add('active');
+                }, index * 30);
+            });
+        }
+
+        // Populate complete 1-100% table
+        function populateCompleteTable() {
+            const tableData = [];
+            
+            // Generate all percentages from 1% to 100%
+            for (let i = 1; i <= 100; i++) {
+                // Find simplest fraction for each percentage
+                const fraction = simplifyFraction(i, 100);
+                tableData.push({
+                    fraction: fraction,
+                    percentage: `${i}%`
+                });
+            }
+            
+            const tableBody = document.getElementById('tableBody');
+            
+            // Split data into rows with 4 columns (2 fractions per row)
+            for (let i = 0; i < tableData.length; i += 2) {
+                const row = document.createElement('tr');
+                
+                // First fraction pair
+                if (tableData[i]) {
+                    row.innerHTML += `
+                        <td>${tableData[i].fraction}</td>
+                        <td>${tableData[i].percentage}</td>
+                    `;
+                }
+                
+                // Second fraction pair
+                if (tableData[i+1]) {
+                    row.innerHTML += `
+                        <td>${tableData[i+1].fraction}</td>
+                        <td>${tableData[i+1].percentage}</td>
+                    `;
+                }
+                
+                tableBody.appendChild(row);
+            }
+        }
+
+        // Function to simplify fractions
+        function simplifyFraction(numerator, denominator) {
+            const gcd = (a, b) => b ? gcd(b, a % b) : a;
+            const divisor = gcd(numerator, denominator);
+            return `${numerator/divisor}/${denominator/divisor}`;
+        }
+
+        // Animate chart bars on scroll
+        function animateBarsOnScroll() {
+            const chartSection = document.querySelector('.chart-section');
+            const chartPosition = chartSection.getBoundingClientRect();
+            
+            if (chartPosition.top < window.innerHeight * 0.75) {
+                const bars = document.querySelectorAll('.chart-bar:not(.active)');
+                bars.forEach((bar, index) => {
+                    setTimeout(() => {
+                        bar.classList.add('active');
+                    }, index * 20); // Even faster animation
+                });
+            }
+        }
+
+        // Setup percentage calculator
+        function setupCalculator() {
+            const calculateBtn = document.getElementById('calculateBtn');
+            const numeratorInput = document.getElementById('numerator');
+            const denominatorInput = document.getElementById('denominator');
+            const resultDiv = document.getElementById('calculationResult');
+            const resultValue = document.getElementById('resultValue');
+            const calculationSteps = document.getElementById('calculationSteps');
+            
+            calculateBtn.addEventListener('click', function() {
+                const numerator = parseFloat(numeratorInput.value);
+                const denominator = parseFloat(denominatorInput.value);
+                
+                if (isNaN(numerator) || isNaN(denominator) || denominator === 0) {
+                    resultValue.innerHTML = '<span style="color: #ff4444;">Please enter valid numbers (denominator cannot be zero)</span>';
+                    resultDiv.style.display = 'block';
+                    return;
+                }
+                
+                const percentage = (numerator / denominator) * 100;
+                const simplifiedFraction = simplifyFraction(numerator, denominator);
+                
+                resultValue.innerHTML = `
+                    <strong>Result:</strong> ${numerator} ÷ ${denominator} = <span style="color: var(--luxury-green); font-weight: 600;">${percentage.toFixed(2)}%</span>
+                `;
+                
+                calculationSteps.innerHTML = `
+                    <div style="margin-bottom: 8px;"><strong>Calculation Steps:</strong></div>
+                    <div>1. Divide numerator by denominator: ${numerator} ÷ ${denominator} = ${(numerator/denominator).toFixed(4)}</div>
+                    <div>2. Multiply by 100 to get percentage: ${(numerator/denominator).toFixed(4)} × 100 = ${percentage.toFixed(2)}%</div>
+                    <div style="margin-top: 10px;">Simplified fraction: ${simplifiedFraction}</div>
+                `;
+                
+                resultDiv.style.display = 'block';
+            });
+        }
+    </script>
+</body>
+</html>
